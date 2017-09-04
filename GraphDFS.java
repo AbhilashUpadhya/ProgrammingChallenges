@@ -35,7 +35,7 @@ class GraphDFS{
 	}
 
 
-	void DFS(int s){
+	void DFS(){
 		boolean visited[] = new boolean[V];
 
 		for(int i=0; i< V; i++){
@@ -53,7 +53,7 @@ class GraphDFS{
 		g.addEdge(1,2);
 		g.addEdge(3,4);
 
-		g.DFS(0);
+		g.DFS();
 
 
 	}
