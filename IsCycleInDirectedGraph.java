@@ -21,13 +21,12 @@ class IsCycleInDirectedGraph{
 	}
 
 	boolean DFSVisit(int u, Integer[] parent, Stack<Integer> stack){
-		//visited[u] = true;
-		//System.out.println("u: " +u);
+		
 		stack.push(u);
 		Iterator<Integer> i = adj[u].listIterator();
 		while(i.hasNext()){
 			int n = i.next();
-			//System.out.println("   n: " + n);
+			
 			if     (parent[n] == -999) {
 					parent[n] = u;
 					return DFSVisit(n, parent, stack);
