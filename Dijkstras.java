@@ -38,18 +38,40 @@ class Dijkstras{
 
 	}
 
-	void printCosts(Integer[] dest){
-		for(int i=0; i< dest.length; i++)
-			System.out.println("Shortest path to "+ i + " costs "+dest[i]);
+	void printpath(Integer[] parent, int i){
+
+		if(i == -1) return;
+		printpath(parent, parent[i]);
+
+		System.out.print(i+ "  ");
+
+		
+	}
+
+	void printCosts(Integer[] dest, Integer[] parent){
+		for(int i=0	; i< dest.length; i++){
+			System.out.println("Shortest path to "+ i + " costs "+dest[i] + " along the path:");
+			printpath(parent, i);
+			System.out.println();
+
+		}
+
+
 	}
 
 	void calculateShortestPath(){
 
 		Integer[] dest = new Integer[V];
-		for(int i=1; i<V; i++)
+		Integer[] parent = new Integer[V];
+
+
+		for(int i=1; i<V; i++){
 			dest[i] = 9999;
+			parent[i] = -1;
+		}
 
 		dest[0] = 0;
+		parent[0] = -1;
 
 		PriorityQueue<Queue_elements> pq = new PriorityQueue<Queue_elements>(V, new Comparator<Queue_elements>(){
 			public int compare(Queue_elements o1, Queue_elements o2) {
@@ -77,8 +99,9 @@ class Dijkstras{
 				Edge ee = it.next();
 				int v = ee.adjacentNode;
 				int w = ee.weight;
-
+				
 				if(dest[v] > u_dist + w){
+					parent[v] = u;
 					dest[v] =  u_dist + w;
 					pq.remove(elements[v]);
 					Queue_elements newElement = new Queue_elements();
@@ -91,7 +114,7 @@ class Dijkstras{
 
 		}
 
-		printCosts(dest);
+		printCosts(dest, parent);
 	}
 
 	public static void main(String[] args){
