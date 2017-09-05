@@ -84,6 +84,7 @@ class Dijkstras{
 					Queue_elements newElement = new Queue_elements();
 					newElement.vertex = v;
 					newElement.distance = dest[v];
+					elements[v] = newElement;
 					pq.offer(newElement);
 				}
 			}
